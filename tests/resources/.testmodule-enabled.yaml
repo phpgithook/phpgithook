@@ -1,0 +1,9 @@
+phpgithook:
+    enabled:
+        test-module:
+            config:
+
+            class:
+                setup: PHPGithook\Runner\Tests\TestModule\Setup
+                classes:
+                    - PHPGithook\Runner\Tests\TestModule\Committer
