@@ -52,7 +52,7 @@
         "test": [
             "vendor/bin/php-cs-fixer --allow-risky=yes --dry-run --diff --stop-on-violation fix",
             "vendor/bin/phpstan analyse -l max src tests",
-            "vendor/bin/phpunit"
+            "vendor/bin/phpunit --coverage-text --coverage-clover=clover.xml"
         ]
     },
     "minimum-stability": "dev",
