@@ -1,5 +1,5 @@
 {
-    "name": "phpgithook/runner",
+    "name": "phpgithook/phpgithook",
     "type": "project",
     "description": "PHPGithook - Run githooks by installing modules",
     "license": "MIT",
@@ -24,7 +24,7 @@
     "repositories": [
         {
             "type": "git",
-            "url": "git@github.com:lsv/flysystem-stream-wrapper.git"
+            "url": "https://github.com/lsv/flysystem-stream-wrapper.git"
         }
     ],
     "autoload": {
