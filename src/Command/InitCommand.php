@@ -129,25 +129,25 @@ class InitCommand extends AbstractCommand
         string $templateFile,
         string $destinationFile
     ): void {
-        $createContent = function (string $template, array $parameters) {
+        $createContent = static function (string $template, array $parameters): string {
             ob_start();
             extract($parameters, EXTR_SKIP);
             /** @noinspection PhpIncludeInspection */
             include $template;
 
-            return ob_get_clean();
+            return (string) ob_get_clean();
         };
 
         $hooksDir = $this->directory->getHooksDirectory();
         $destination = "{$hooksDir}/{$destinationFile}";
         $fileContent = $createContent($templateFile, ['phpbin' => $phpbin, 'phpgithookbin' => $phpgithookbin]);
-        if ($this->directory->createFile($destination, $fileContent)) {
+        if ($this->directory->createFile($destination, $fileContent, true)) {
             return;
         }
 
         if ($this->io->confirm("File '{$destinationFile}' already exists - Do you want me to overwrite it?", false)) {
             $this->directory->deleteFile($destinationFile);
-            $this->directory->createFile($destinationFile, $fileContent);
+            $this->directory->createFile($destinationFile, $fileContent, true);
             $this->io->note("{$destinationFile} has been overwritten");
 
             return;

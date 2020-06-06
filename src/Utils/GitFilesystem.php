@@ -88,10 +88,15 @@ class GitFilesystem
         return $this->filesystem->delete($path);
     }
 
-    public function createFile(string $path, string $content): bool
+    public function createFile(string $path, string $content, bool $executeable = false): bool
     {
         if (!$this->filesystem->has($path)) {
-            return $this->filesystem->write($path, $content);
+            $write = $this->filesystem->write($path, $content);
+            if ($executeable && $this->getFullPath()) {
+                chmod($this->getFullPath().'/'.$path, 0777);
+            }
+
+            return $write;
         }
 
         return false;

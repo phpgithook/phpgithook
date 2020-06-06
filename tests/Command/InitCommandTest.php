@@ -111,6 +111,8 @@ class InitCommandTest extends TestCase
             ]
         );
         self::assertFileExists($temp.'/.git/hooks/.phpgithook.yaml');
+        self::assertFileExists($temp.'/.git/hooks/commit-msg');
+        self::assertTrue(is_executable($temp.'/.git/hooks/commit-msg'));
 
         $this->rrmdir(dirname($temp));
     }

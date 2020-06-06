@@ -14,6 +14,7 @@ $autoloadDirs = [
 
 foreach ($autoloadDirs as $autoloadDir) {
     if (file_exists($autoloadDir)) {
+        /** @noinspection PhpIncludeInspection */
         require $autoloadDir;
         break;
     }
